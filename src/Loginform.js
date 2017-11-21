@@ -14,7 +14,8 @@ class Login extends Component {
     this.state = {
       currentItem:'',
       userName:'',
-      password:''
+      password:'',
+
     }
 
     this.login = this.login.bind(this);
@@ -38,7 +39,7 @@ login() {
   .catch(function(error){
     var errorCode = error.code;
     var errorMessage = error.message;
-    
+
     if (errorCode === 'auth/wrong-password') {
 
             alert('contraseña incorrecta');
