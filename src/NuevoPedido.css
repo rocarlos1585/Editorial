@@ -1,0 +1,15 @@
+.espacio{
+  align-items: right;
+}
+
+.cantidad{
+  text-align: left;
+  padding-left: 80px;
+  padding-top: 20px;
+  width: 100px;
+}
+
+.libros{
+  text-align: left;
+  padding-left: 300px;
+}
