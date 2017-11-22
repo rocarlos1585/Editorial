@@ -3,12 +3,13 @@ import {Route, BrowserRouter, Link, Redirect, Switch,Router} from 'react-router-
 import * as firebase from 'firebase'
 import Login from './Loginform.js'
 import Escuela from './Escuela.js'
+import Editorial from './Editorial.js'
 
 function PrivateRouteEditorial ({component: Component, authed,user, ...rest}) {
   return (
     <Route
       {...rest}
-      render={(props) => authed === true &&  user === 'adan1995a@gmail.com'
+      render={(props) => authed === true &&  user === 'amfpulido@gmail.com'
         ? <Component {...props} />
         : <Redirect to={{pathname: '/editorial' , state: {from: props.location}}} />}
     />
@@ -18,7 +19,7 @@ function PrivateRouteEscuela ({component: Component, authed,user, ...rest}) {
   return (
     <Route
       {...rest}
-      render={(props) => authed === true &&  user !== 'adan1995a@gmail.com'
+      render={(props) => authed === true &&  user !== 'amfpulido@gmail.com'
         ? <Component {...props} />
         : <Redirect to={{pathname: '/escuela' , state: {from: props.location}}} />}
     />
@@ -67,7 +68,7 @@ class Routes extends Component {
           <Switch>
 
             <PublicRoute exact authed={this.state.autenticado} path="/login" component={Login}/>
-            <PrivateRouteEditorial authed={this.state.authed} path='/editorial' component={AdminList} />
+            <PrivateRouteEditorial authed={this.state.authed} path='/editorial' component={Editorial} />
             <PrivateRouteEscuela authed={this.state.authed} path='/escuela' component={Escuela} />
             <Route render={() => <h3>Uups! algo paso mal :D</h3>} />
           </Switch>
