@@ -11,7 +11,7 @@ function PrivateRouteEditorial ({component: Component, authed,user, ...rest}) {
       {...rest}
       render={(props) => authed === true &&  user === 'amfpulido@gmail.com'
         ? <Component {...props} />
-        : <Redirect to={{pathname: '/editorial' , state: {from: props.location}}} />}
+        : <Redirect to={{pathname: '/escuela' , state: {from: props.location}}} />}
     />
   )
 }
@@ -21,7 +21,7 @@ function PrivateRouteEscuela ({component: Component, authed,user, ...rest}) {
       {...rest}
       render={(props) => authed === true &&  user !== 'amfpulido@gmail.com'
         ? <Component {...props} />
-        : <Redirect to={{pathname: '/escuela' , state: {from: props.location}}} />}
+        : <Redirect to={{pathname: '/' , state: {from: props.location}}} />}
     />
   )
 }
@@ -32,7 +32,7 @@ function PublicRouteLogin ({component: Component, authed, ...rest}) {
       {...rest}
       render={(props) => authed === false
         ? <Component {...props} />
-        : <Redirect to='/login' />}
+        : <Redirect to='/editorial' />}
     />
   )
 }
@@ -41,6 +41,7 @@ class Routes extends Component {
   state = {
     authed: false,
     loading: true,
+    user:''
   }
   componentDidMount () {
 
@@ -49,6 +50,7 @@ class Routes extends Component {
         this.setState({
           authed: true,
           loading: false,
+          user:user.email
         })
       } else {
         this.setState({
@@ -64,15 +66,18 @@ class Routes extends Component {
   render() {
 
       return this.state.loading === true ? <h1>Loading</h1> : (
-
+        <div>
+        <BrowserRouter>
           <Switch>
 
-            <PublicRoute exact authed={this.state.autenticado} path="/login" component={Login}/>
-            <PrivateRouteEditorial authed={this.state.authed} path='/editorial' component={Editorial} />
-            <PrivateRouteEscuela authed={this.state.authed} path='/escuela' component={Escuela} />
-            <Route render={() => <h3>Uups! algo paso mal :D</h3>} />
+            <PublicRouteLogin exact authed={this.state.authed} path="/" component={Login}/>
+            <PrivateRouteEditorial user ={this.state.user} authed={this.state.authed} path='/editorial' component={Editorial} />
+            <PrivateRouteEscuela user={this.state.user} authed={this.state.authed} path='/escuela' component={Escuela} />
+            <Route render={() => <h3>Uups! ocurrio un error :D</h3>} />
           </Switch>
-
+        </ BrowserRouter>
+        </div>
     );
   }
 }
+export default Routes;

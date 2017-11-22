@@ -10,7 +10,7 @@ import Loginform from './Loginform.js'
 import NuevoPedido from "./NuevoPedido.js"
 import Escuela from "./Escuela.js"
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-
+import Routes from './RouterPrincipal.js'
 class App extends Component {
 
 
@@ -28,9 +28,9 @@ constructor(){
     return (
         <div className="App">
           <MuiThemeProvider >
-          <Loginform/>
+          <Routes/>
 
-          
+
 
           </MuiThemeProvider>
         </div>
