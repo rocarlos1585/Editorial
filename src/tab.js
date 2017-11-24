@@ -20,7 +20,7 @@ class Agregartab extends Component{
         </Tabs>
         </div>
 
-        /*revisar esta parte ya que editorial no tiene porque agregar ningun pedido*/
+        
         <div className= "routersEditorial">
           <Route path="/Editorial/AgregarPedido" component={AgregarLibro}/>
           <Route path="/Editorial/HistorialPedido" component={HistorialPedido}/>

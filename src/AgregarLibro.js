@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import Avatar from 'material-ui/Avatar';
 import TableExampleSimple from './tableLibros.js'
+import ListaLibrosNuevos from './ListaLibrosNuevos.js'
 
 const style = {margin: 5};
 
@@ -25,6 +26,13 @@ handleChange=(event, index, value)=>this.setState({value});
 
       }
     }
+
+    getIdLibro=(event)=>{
+      this.setState({
+        casoIdLibro:event.target.value
+      });
+    };
+
 
     getTituloLibro=(event)=>{
 
@@ -47,23 +55,29 @@ handleChange=(event, index, value)=>this.setState({value});
       });
     };
 
+
+
     getLibro=()=>{
       var self=this;
       this.setState({
-        librosArray:self.state.librosArray.concat({Titulo:self.state.casoTituloLibro, Modulo:self.state.casoModulo, Paginas:self.state.casoPaginas})
+        librosArray:self.state.librosArray.concat({Id:self.state.casoIdLibro,  Titulo:self.state.casoTituloLibro, Modulo:self.state.casoModulo, Paginas:self.state.casoPaginas})
       })
     };
 
   render(){
     return(
       <div className="libro">
-        <Avatar className="ava" src="" size={70} style={style} />
+        <Avatar className="ava" src="" size={70} style={style}/>
+        <br></br>
+        <TextField hintText="ID" onChange={this.getIdLibro} floatingLabelText="ID"/>
+        <br></br>
         <TextField hintText="Titulo" onChange={this.getTituloLibro} floatingLabelText="Titulo"/>
+        <br></br>
         <TextField hintText="Modulo" onChange={this.getModulo}      floatingLabelText="Modulo" /><pre></pre>
         <TextField hintText="#"      onChange={this.getPaginas}     floatingLabelText="Numero de Paginas" /><br></br>
         <RaisedButton label="Agregar" onClick={this.getLibro}      secondary={true} /><br></br><br></br>
 
-        <TableExampleSimple/>
+        <ListaLibrosNuevos librosArray={this.state.librosArray}/>
       </div>
     );
   }
