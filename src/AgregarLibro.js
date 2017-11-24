@@ -12,38 +12,58 @@ import TableExampleSimple from './tableLibros.js'
 const style = {margin: 5};
 
 class AgregarLibro extends Component{
+
+handleChange=(event, index, value)=>this.setState({value});
+
+
   constructor(props) {
-      super(props);
+      super();
+      this.state={
+      librosArray:[],
 
-      this.state = {
-        controlledDate: null,
-      };
+      value:1,
+
+      }
     }
-    handleChange = (event, date) => {
-        this.setState({
-          controlledDate: date,
-        });
-      };
 
-      state={
-        value:0,
-      };
-      handleChange=(event, index, value)=>this.setState({value});
+    getTituloLibro=(event)=>{
+
+      this.setState({
+        casoTituloLibro:event.target.value
+      });
+    };
+
+    getModulo=(event)=>{
+
+      this.setState({
+        casoModulo:event.target.value
+      });
+    };
+
+    getPaginas=(event)=>{
+
+      this.setState({
+        casoPaginas:event.target.value
+      });
+    };
+
+    getLibro=()=>{
+      var self=this;
+      this.setState({
+        librosArray:self.state.librosArray.concat({Titulo:self.state.casoTituloLibro, Modulo:self.state.casoModulo, Paginas:self.state.casoPaginas})
+      })
+    };
 
   render(){
     return(
       <div className="libro">
-      <Avatar className="ava" src="" size={70} style={style} />
-      <SelectField className="li" floatingLabelText="Libros" value={this.state.value} onChange={this.handleChange}>
-        <MenuItem value={0} primaryText=" "/>
-        <MenuItem value={1} primaryText="El llano en llamas" />
-      </SelectField><br></br>
+        <Avatar className="ava" src="" size={70} style={style} />
+        <TextField hintText="Titulo" onChange={this.getTituloLibro} floatingLabelText="Titulo"/>
+        <TextField hintText="Modulo" onChange={this.getModulo}      floatingLabelText="Modulo" /><pre></pre>
+        <TextField hintText="#"      onChange={this.getPaginas}     floatingLabelText="Numero de Paginas" /><br></br>
+        <RaisedButton label="Agregar" onClick={this.getLibro}      secondary={true} /><br></br><br></br>
 
-      <TextField className="grado" hintText="Modulo" floatingLabelText="Grado Escolar" /><pre></pre>
-      <TextField className="pagina" hintText="#" floatingLabelText="Numero de Paginas" /><br></br>
-      <RaisedButton label="Agregar" secondary={true} /><br></br><br></br>
-
-      <TableExampleSimple/>
+        <TableExampleSimple/>
       </div>
     );
   }

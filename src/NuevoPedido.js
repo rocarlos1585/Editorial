@@ -1,11 +1,19 @@
 import React, {Component} from "react";
-
 import AppBar from 'material-ui/AppBar'
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton'
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ListaPedidoEscuela from './listaPedidoEscuela.js'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 
 const styleHr={
@@ -16,32 +24,76 @@ const styleHr={
 
 class NuevoPedido extends Component{
 
-  state={
-    value:0,
+  handleChange=(event, index, value) => this.setState({value});
+
+  constructor(){
+    super();
+    this.state={
+    menuLibros:[
+    {identificador:'1', libro:"El llano en llamas"},
+    {identificador:'2', libro:"El Quijote"},
+    {identificador:'3', libro:"Diario de un Nomada"},
+    {identificador:'4', libro:"El Palacio Negro"},
+    {identificador:'5', libro:"Quiubole"},
+  ],
+
+    pedido:[
+
+    ],
+
+    value:1,
+    }
+  }
+
+getPedido=()=>{
+  var self=this;
+  this.setState({
+    pedido:self.state.pedido.concat({libroP:self.state.menuLibros[self.state.value].libro, cantidad:self.state.casoCantidad})
+
+  })
+};
+
+  getLibro=(event)=>{
+    this.setState({
+      casoLibro:event.target.value
+    });
   };
 
-  handleChange=(event, index, value)=>this.setState({value});
+  getCantidad=(event)=>{
+    this.setState({
+      casoCantidad:event.target.value
+    });
+  };
+
   render(){
     return(
       <div>
-      <div className="libros">
-        <SelectField floatingLabelText="Libros"
-          value={this.state.value}
-          onChange={this.handleChange}>
+        <div className="libros">
+          <SelectField
+            floatingLabelText="Libros"
+            value={this.state.value}
+            onChange={this.handleChange}>
+            {this.state.menuLibros.map(x =>
+              <MenuItem key={x.identificador} value={x.identificador} primaryText={x.libro} />
+            )}
+          </SelectField>
 
-          <MenuItem value={0} primaryText=" "/>
-          <MenuItem value={1} primaryText="El LLano en LLamas" />
-          <MenuItem value={2} primaryText="La Divina Comedia" />
-          <MenuItem value={3} primaryText="El Palacio Negro" />
-          <MenuItem value={4} primaryText="Poemas de Benedetti" />
-        </SelectField>
+        </div>
 
-      </div>
+        <div>
+          <TextField style={styleHr} floatingLabelText="cantidad" onChange={this.getCantidad} fullWidth={false}/>
+          <br></br>
+          <RaisedButton label="Aceptar" onClick={this.getPedido} primary={true}/>
 
-      <div>
-        <TextField style={styleHr} floatingLabelText="cantidad" fullWidth={false}/>
-        <RaisedButton label="Aceptar"/>
-      </div>
+        </div>
+          <ListaPedidoEscuela pedido={this.state.pedido}/>
+        <div>
+
+
+
+
+
+        </div>
       </div>
     );
   }

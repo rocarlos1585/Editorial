@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar'
 import {Tabs, Tab} from 'material-ui/Tabs';
 import FontIcon from 'material-ui/FontIcon';
-import AgregarPedido from "./AgregarPedido.js"
+import AgregarLibro from "./AgregarLibro.js"
 import HistorialPedido from "./HistorialPedido";
 
 class Agregartab extends Component{
@@ -20,8 +20,9 @@ class Agregartab extends Component{
         </Tabs>
         </div>
 
+        /*revisar esta parte ya que editorial no tiene porque agregar ningun pedido*/
         <div className= "routersEditorial">
-          <Route path="/Editorial/AgregarPedido" component={AgregarPedido}/>
+          <Route path="/Editorial/AgregarPedido" component={AgregarLibro}/>
           <Route path="/Editorial/HistorialPedido" component={HistorialPedido}/>
         </div>
       </div>

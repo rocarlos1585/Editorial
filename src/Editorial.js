@@ -3,7 +3,7 @@ import {HashRouter, Route, Link} from "react-router-dom"
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar'
 import {Tabs, Tab} from 'material-ui/Tabs';
-import AgregarPedido from "./AgregarPedido.js"
+import NuevoPedido from "./NuevoPedido.js"
 import AgregarLibro from "./AgregarLibro.js";
 import Agregartab from "./tab.js";
 
