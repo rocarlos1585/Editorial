@@ -2,8 +2,13 @@ import React, {Component} from "react";
 import {HashRouter, Route, Link} from "react-router-dom"
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar'
-import NuevoPedido from "./NuevoPedido.js"
+import {Tabs, Tab} from 'material-ui/Tabs';
+import AgregarPedido from "./AgregarPedido.js"
 import AgregarLibro from "./AgregarLibro.js";
+import Agregartab from "./tab.js";
+
+
+
 
 class Editorial extends Component{
 
@@ -13,14 +18,13 @@ class Editorial extends Component{
       <div>
       <AppBar title="Editorial"/>
         <div>
-          <RaisedButton label="NuevoPedido" primary={false} containerElement={<Link to="/Editorial/NuevoPedido"/>} linkButton={true}/>
-
-          <RaisedButton label="AgregarLibro" primary={false} containerElement={<Link to="/Editorial/AgregarLibro"/>} linkButton={true}/>
+          <RaisedButton label="Nuevo Libro" primary={false} containerElement={<Link to="/Editorial/AgregarLibro"/>} linkButton={true}/>
+          <RaisedButton label="Pedidos"    primary={false} containerElement={<Link to="/Editorial/Agregartab"/>} linkButton={true}/>
         </div>
 
-        <div className= "routersEditorial">
-          <Route path="/Editorial/NuevoPedido" component={NuevoPedido}/>
+        <div className= "routersEscuela">
           <Route path="/Editorial/AgregarLibro" component={AgregarLibro}/>
+          <Route path="/Editorial/Agregartab"   component={Agregartab}/>
         </div>
       </div>
       </HashRouter>

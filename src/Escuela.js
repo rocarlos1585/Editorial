@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar'
 import NuevoPedido from "./NuevoPedido.js"
 import HistorialEscuela from "./HistorialEscuela.js";
+import tabEscuela from "./tabEscuela";
 
 
 
@@ -17,13 +18,12 @@ class Escuela extends Component{
       <AppBar title="Escuela"/>
         <div>
           <RaisedButton label="Nuevo Pedido" primary={false} containerElement={<Link to="/Escuela/NuevoPedido"/>} linkButton={true}/>
-        
-          <RaisedButton label="Historial"    primary={false} containerElement={<Link to="/Escuela/HistorialEscuela"/>} linkButton={true}/>
+          <RaisedButton label="Historial"    primary={false} containerElement={<Link to="/Escuela/tabEscuela"/>} linkButton={true}/>
         </div>
 
         <div className= "routersEscuela">
           <Route path="/Escuela/NuevoPedido" component={NuevoPedido}/>
-          <Route path="/Escuela/HistorialEscuela"   component={HistorialEscuela}/>
+          <Route path="/Escuela/tabEscuela"   component={tabEscuela}/>
         </div>
       </div>
       </HashRouter>
