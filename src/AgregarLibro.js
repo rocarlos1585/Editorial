@@ -22,8 +22,8 @@ handleChange=(event, index, value)=>this.setState({value});
       super();
       this.state={
       librosArray:[],
-      imagen:'',
       value:1,
+      imagenurl:"",
       statusSubida:0,
       subiendo:false,
 
@@ -71,10 +71,17 @@ handleChange=(event, index, value)=>this.setState({value});
 
       if (event.target.files && event.target.files[0]) {
             let reader = new FileReader();
+            let file = event.target.files[0]
             reader.onload = (e) => {
-                this.setState({imagen: e.target.result});
+
+                this.setState({
+
+                  imagen:file,
+
+                });
+                console.log(this.state.imagen);
             };
-            reader.readAsDataURL(event.target.files[0]);
+            reader.readAsDataURL(file);
         }
 
     }
@@ -87,8 +94,10 @@ handleChange=(event, index, value)=>this.setState({value});
       });
 
       var user =firebase.auth().currentUser;
-      const referencia = firebase.storage().ref(`hola/libros`);
-      const task = referencia.put(self.state.imagenSubir);
+      const referencia = firebase.storage().ref(`hola/${self.state.imagen.name}`);
+
+      const task = referencia.put(self.state.imagen);
+
       var promesa =new Promise(
         function(resolve,reject){
           task.on('state_changed', function(snapshot){
@@ -105,7 +114,7 @@ handleChange=(event, index, value)=>this.setState({value});
       )
       promesa.then(function(){
         self.setState({
-          imagen:downloadURL,
+          imagenurl:downloadURL,
           subiendo:false
         })
         self.subirLibro();
@@ -120,7 +129,7 @@ handleChange=(event, index, value)=>this.setState({value});
         Modulo:`${this.state.casoModulo}`,
         TituloLibro:`${this.state.casoTituloLibro}`,
         Paginas:`${this.state.casoPaginas}`,
-        foto:`${this.state.imagen}`,
+        foto:`${this.state.imagenurl}`,
       });
     }
 
