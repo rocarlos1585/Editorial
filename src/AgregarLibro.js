@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import * as firebase from 'firebase';
+import {ref} from './firebase.js'
 import AppBar from 'material-ui/AppBar'
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
@@ -24,7 +25,7 @@ handleChange=(event, index, value)=>this.setState({value});
       imagen:'',
       value:1,
       statusSubida:0,
-      subiendo:false
+      subiendo:false,
 
       }
     }
@@ -65,19 +66,29 @@ handleChange=(event, index, value)=>this.setState({value});
         librosArray:self.state.librosArray.concat({Id:self.state.casoIdLibro,  Titulo:self.state.casoTituloLibro, Modulo:self.state.casoModulo, Paginas:self.state.casoPaginas})
       })
     };
-    subirFoto=(event)=>{
-      let reader = new FileReader();
-      let file = event.target.files[0];
+
+    seleccionarFoto=(event)=>{
+
+      if (event.target.files && event.target.files[0]) {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                this.setState({imagen: e.target.result});
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+    }
+
+    subirFoto=()=>{
       var self=this;
       var downloadURL;
       self.setState({
         subiendo:true
       });
 
-      console.log(file);
       var user =firebase.auth().currentUser;
       const referencia = firebase.storage().ref(`hola/libros`);
-      const task = referencia.put(file);
+      const task = referencia.put(self.state.imagenSubir);
       var promesa =new Promise(
         function(resolve,reject){
           task.on('state_changed', function(snapshot){
@@ -97,8 +108,20 @@ handleChange=(event, index, value)=>this.setState({value});
           imagen:downloadURL,
           subiendo:false
         })
+        self.subirLibro();
       })
+    }
 
+    subirLibro=()=>{
+      var refDa = ref.child("Editorial/Libros");
+      var refDa2= refDa.push();
+      refDa2.set({
+        IdLibro:`${this.state.casoIdLibro}`,
+        Modulo:`${this.state.casoModulo}`,
+        TituloLibro:`${this.state.casoTituloLibro}`,
+        Paginas:`${this.state.casoPaginas}`,
+        foto:`${this.state.imagen}`,
+      });
     }
 
   render(){
@@ -109,14 +132,14 @@ handleChange=(event, index, value)=>this.setState({value});
         <LinearProgress mode="determinate" value={this.state.statusSubida} />
         <Avatar className="ava" src={this.state.imagen}size={70} style={style}/>
         <br></br>
-        <input type='file' onChange={this.subirFoto.bind(this)}/>
+        <input type='file' onChange={this.seleccionarFoto.bind(this)}/>
         <TextField hintText="ID" onChange={this.getIdLibro} floatingLabelText="ID"/>
         <br></br>
         <TextField hintText="Titulo" onChange={this.getTituloLibro} floatingLabelText="Titulo"/>
         <br></br>
         <TextField hintText="Modulo" onChange={this.getModulo}      floatingLabelText="Modulo" /><pre></pre>
         <TextField hintText="#"      onChange={this.getPaginas}     floatingLabelText="Numero de Paginas" /><br></br>
-        <RaisedButton label="Agregar" onClick={this.getLibro}      secondary={true} /><br></br><br></br>
+        <RaisedButton label="Agregar" onClick={this.subirFoto}      secondary={true} /><br></br><br></br>
 
 
         <ListaLibrosNuevos librosArray={this.state.librosArray}/>
