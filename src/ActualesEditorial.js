@@ -9,6 +9,8 @@ import {
 } from 'material-ui/Table';
 
 class Actuales extends Component{
+
+
   render(){
     return(
       <Table>

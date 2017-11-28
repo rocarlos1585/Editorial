@@ -33,9 +33,7 @@ class NuevoPedido extends Component{
     this.state={
     menuLibros:[],
 
-    pedido:[
-
-    ],
+    pedido:[],
 
     value:1,
     }
@@ -43,13 +41,15 @@ class NuevoPedido extends Component{
 
   componentWillMount(){
     var self=this;
+    var valueLocal = 1;
     var referenciaSelect=ref.child('Editorial/Libros');
     var bufferSelect=[];
     var promise = new Promise(
       function(resolve, reject){
         referenciaSelect.on('value', snapshot=>{
           snapshot.forEach(snapChild=>{
-            resolve(bufferSelect=bufferSelect.concat([{libro:snapChild.val().TituloLibro}]));
+            resolve(bufferSelect=bufferSelect.concat([{value:valueLocal, libro:snapChild.val().TituloLibro}]));
+            valueLocal++;
           })
         })
       }
@@ -107,7 +107,7 @@ class NuevoPedido extends Component{
 
                   self.state.pedido.map((it)=>{
                     referenciaLibros.push({
-                    libro:it.libroP,
+                    libro:it.libro,
                     cantidad:it.cantidad
                   })
                 })
@@ -121,7 +121,7 @@ class NuevoPedido extends Component{
 getPedido=()=>{
   var self=this;
   this.setState({
-    pedido:self.state.pedido.concat({libroP:self.state.menuLibros[self.state.value-1].libro, cantidad:self.state.casoCantidad})
+    pedido:self.state.pedido.concat({libro:self.state.menuLibros[self.state.value-1].libro, cantidad:self.state.casoCantidad})
   })
 };
 
@@ -146,7 +146,7 @@ getPedido=()=>{
             value={this.state.value}
             onChange={this.handleChange}>
             {this.state.menuLibros.map(x =>
-              <MenuItem key={x.identificador} value={x.identificador} primaryText={x.libro} />
+              <MenuItem key={x.value} value={x.value} primaryText={x.libro} />
             )}
           </SelectField>
 

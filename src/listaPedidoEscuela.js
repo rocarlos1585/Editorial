@@ -17,7 +17,7 @@ class Element extends Component{
   render(){
     return(
       <TableRow>
-        <TableRowColumn>{this.props.libroP}</TableRowColumn>
+        <TableRowColumn>{this.props.libro}</TableRowColumn>
         <TableRowColumn>{this.props.cantidad}</TableRowColumn>
       </TableRow>
     );
@@ -41,7 +41,7 @@ class ListaPedidoEscuela extends Component {
         </TableHeader>
         <TableBody>
         {this.props.pedido.map((it)=>{
-          return(<Element libroP={it.libroP} cantidad={it.cantidad}/>)
+          return(<Element libro={it.libro} cantidad={it.cantidad}/>)
         })}
         </TableBody>
       </Table>
