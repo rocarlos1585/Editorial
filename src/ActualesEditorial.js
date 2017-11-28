@@ -8,15 +8,12 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-
-class HistorialPedido extends Component{
-
+class Actuales extends Component{
   render(){
     return(
       <Table>
         <TableHeader>
         <TableRow>
-          <TableHeaderColumn>ID</TableHeaderColumn>
           <TableHeaderColumn>Name</TableHeaderColumn>
           <TableHeaderColumn>Date</TableHeaderColumn>
           <TableHeaderColumn>Status</TableHeaderColumn>
@@ -25,6 +22,7 @@ class HistorialPedido extends Component{
         </Table>
     );
   }
+
 }
 
-export default HistorialPedido;
+export default Actuales;

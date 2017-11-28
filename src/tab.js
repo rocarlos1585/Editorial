@@ -6,6 +6,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import FontIcon from 'material-ui/FontIcon';
 import AgregarLibro from "./AgregarLibro.js"
 import HistorialPedido from "./HistorialPedido";
+import Actuales from './ActualesEditorial.js';
 
 class Agregartab extends Component{
 
@@ -15,15 +16,9 @@ class Agregartab extends Component{
       <div>
         <div>
         <Tabs >
-          <Tab label="Pedido Nuevo" primary={false} containerElement={<Link to="/Editorial/AgregarPedido"/>} linkButton={true}/>
-          <Tab  label="Historial de Pedidos" primary={false} containerElement={<Link to="/Editorial/HistorialPedido"/>} linkButton={true}/>
+          <Tab label="Actuales"  ><Actuales/></Tab>
+          <Tab  label="Historial de Pedidos" ><HistorialPedido/></Tab>
         </Tabs>
-        </div>
-
-        
-        <div className= "routersEditorial">
-          <Route path="/Editorial/AgregarPedido" component={AgregarLibro}/>
-          <Route path="/Editorial/HistorialPedido" component={HistorialPedido}/>
         </div>
       </div>
       </HashRouter>
