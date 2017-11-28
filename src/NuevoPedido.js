@@ -95,10 +95,12 @@ class NuevoPedido extends Component{
 
                 var referencia=ref.child('Pedidos'+'/'+anio+'/'+mes+'/'+dia);
                 var referenciaPush = referencia.push();
-
+                var query='pedido de '+userReplaced+'en '+anio+'/'+mes+'/'+dia;
                 referenciaPush.set({
                   userReplaced,
-                  status
+                  status,
+                  nombre:query,
+                  key:referenciaPush.key
                 })
                 keyLibros=referenciaPush.key;
 
@@ -108,8 +110,10 @@ class NuevoPedido extends Component{
                   self.state.pedido.map((it)=>{
                     referenciaLibros.push({
                     libro:it.libro,
-                    cantidad:it.cantidad
+                    cantidad:it.cantidad,
+
                   })
+
                 })
 
                 alert(keyLibros);
