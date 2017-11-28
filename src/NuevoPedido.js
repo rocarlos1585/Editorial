@@ -31,13 +31,7 @@ class NuevoPedido extends Component{
   constructor(){
     super();
     this.state={
-    menuLibros:[
-    {identificador:'1', libro:"El llano en llamas"},
-    {identificador:'2', libro:"El Quijote"},
-    {identificador:'3', libro:"Diario de un Nomada"},
-    {identificador:'4', libro:"El Palacio Negro"},
-    {identificador:'5', libro:"Quiubole"},
-  ],
+    menuLibros:[],
 
     pedido:[
 
@@ -45,6 +39,29 @@ class NuevoPedido extends Component{
 
     value:1,
     }
+  }
+
+  componentWillMount(){
+    var self=this;
+    var referenciaSelect=ref.child('Editorial/Libros');
+    var bufferSelect=[];
+    var promise = new Promise(
+      function(resolve, reject){
+        referenciaSelect.on('value', snapshot=>{
+          snapshot.forEach(snapChild=>{
+            resolve(bufferSelect=bufferSelect.concat([{libro:snapChild.val().TituloLibro}]));
+          })
+        })
+      }
+    )
+
+    promise.then(
+      function(){
+        self.setState({
+          menuLibros:bufferSelect
+        })
+      }
+    )
   }
 
   sendPedido=()=>{
