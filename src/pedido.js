@@ -6,7 +6,7 @@ import Subheader from 'material-ui/Subheader';
 import Avatar from 'material-ui/Avatar';
 import MenuItem from 'material-ui/MenuItem';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
-
+import StepperStatus from './stepperStatus.js';
 const style ={
 
 }
@@ -20,6 +20,9 @@ const styleItem = {
 const styleImgItem ={
   width:'30%',
 
+}
+const estilos={
+  width:'90%',
 }
 
 
@@ -136,6 +139,7 @@ const Items = (props) =>{
 
   return(
     <div id='items'>
+    <div style={estilos}>
       {arrayActivo.map((mail,i) =>
 
         <div id='admin-list-item' style={styleItem}>
@@ -158,6 +162,8 @@ const Items = (props) =>{
           <Divider inset={true}/>
         </div>
       )}
+      <StepperStatus/>
+      </div>
     </div>
   )
 }
