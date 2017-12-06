@@ -28,6 +28,7 @@ constructor(){
     return (
         <div className="App">
           <MuiThemeProvider >
+          <AppBar title="Escuela"/>
           <Routes/>
 
 

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {ref,auth} from './firebase.js';
 import * as firebase from 'firebase'
 
-import {Route, BrowserRouter, Link, Redirect, Switch,Router} from 'react-router-dom'
+import {Route,withRouter, BrowserRouter, Link, Redirect, Switch,Router,History} from 'react-router-dom'
 
 import {
   Table,
@@ -21,18 +21,24 @@ class Item extends Component{
 
   }
   callBackIndex=()=>{
-  //  this.props.callback(rowNumber);
+  var self=this;
   var index=this.props.keys;
   var clave=this.props.arreglo[index].key;
-  window.location.href = "Escuela/tabEscuela/"+clave;
+
+  window.location.href = "/escuela/pedido/"+clave;
+//   self.props.history.push('/');
   }
 
   render(){
     return(
+      <div>
+
       <TableRow onClick={this.callBackIndex} >
         <TableRowColumn>{this.props.nombre}</TableRowColumn>
         <TableRowColumn>{this.props.status}</TableRowColumn>
       </TableRow>
+
+      </div>
     );
   }
 }
