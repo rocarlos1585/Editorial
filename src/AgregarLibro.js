@@ -26,6 +26,7 @@ handleChange=(event, index, value)=>this.setState({value});
       imagenurl:"",
       statusSubida:0,
       subiendo:false,
+      recargar:0
 
       }
     }
@@ -130,6 +131,7 @@ handleChange=(event, index, value)=>this.setState({value});
         TituloLibro:`${this.state.casoTituloLibro}`,
         Paginas:`${this.state.casoPaginas}`,
         foto:`${this.state.imagenurl}`,
+        key:refDa2.key
       });
     }
 

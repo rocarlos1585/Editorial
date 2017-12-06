@@ -5,7 +5,7 @@ import AppBar from 'material-ui/AppBar'
 import NuevoPedido from "./NuevoPedido.js"
 import HistorialEscuela from "./HistorialEscuela.js";
 import tabEscuela from "./tabEscuela";
-
+import Agregartab from './pedido.js';
 
 
 
@@ -24,6 +24,7 @@ class Escuela extends Component{
         <div className= "routersEscuela">
           <Route path="/Escuela/NuevoPedido" component={NuevoPedido}/>
           <Route path="/Escuela/tabEscuela"   component={tabEscuela}/>
+          <Route path="Escuela/tabEscuela/:id" component={Agregartab}/>
         </div>
       </div>
       </HashRouter>
