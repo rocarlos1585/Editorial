@@ -11,6 +11,7 @@ import Avatar from 'material-ui/Avatar';
 import TableExampleSimple from './tableLibros.js'
 import ListaLibrosNuevos from './ListaLibrosNuevos.js'
 import LinearProgress from 'material-ui/LinearProgress';
+import './AgregarLibro.css';
 const style = {margin: 5};
 
 class AgregarLibro extends Component{
@@ -141,9 +142,10 @@ handleChange=(event, index, value)=>this.setState({value});
 
       <div className="libro">
         <LinearProgress mode="determinate" value={this.state.statusSubida} />
-        <Avatar className="ava" src={this.state.imagen}size={70} style={style}/>
+        <img className="ava" src={this.state.imagen}size={70} style={style}/>
         <br></br>
         <input type='file' onChange={this.seleccionarFoto.bind(this)}/>
+        <br></br>
         <TextField hintText="ID" onChange={this.getIdLibro} floatingLabelText="ID"/>
         <br></br>
         <TextField hintText="Titulo" onChange={this.getTituloLibro} floatingLabelText="Titulo"/>

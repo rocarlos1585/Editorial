@@ -14,6 +14,7 @@ import {
 } from 'material-ui/Table';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import './App.css';
 
 class Item extends Component{
   constructor(props){
@@ -166,7 +167,7 @@ class ActualesE extends Component{
 
     return(
       <div>
-      <SelectField
+      <SelectField className="seleccion"
          floatingLabelText="Frequency"
          value={this.state.value}
          onChange={this.handleChange}
@@ -185,7 +186,7 @@ class ActualesE extends Component{
          <MenuItem value={12} primaryText="Diciembre" />
        </SelectField>
        <br />
-      <Table >
+      <Table className="tablaD">
         <TableHeader>
         <TableRow>
           <TableHeaderColumn>Pedido</TableHeaderColumn>
