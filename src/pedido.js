@@ -1,6 +1,29 @@
 import React, {Component} from "react";
 import * as firebase from 'firebase';
+import {List, ListItem} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
+import Avatar from 'material-ui/Avatar';
+import MenuItem from 'material-ui/MenuItem';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import StepperStatus from './stepperStatus.js';
+const style ={
 
+}
+
+const styleItem = {
+
+
+  	padding: '25px',
+  	margin: '0',
+}
+const styleImgItem ={
+  width:'30%',
+
+}
+const estilos={
+  width:'90%',
+}
 
 
 class ItemPedido extends Component{
@@ -48,6 +71,8 @@ class ItemPedido extends Component{
       function(){
         self.obtenerImagenes(arrayLibrosActualPedido);
         self.setState({
+          NombrePedidoDB:nombreActualPedido,
+          StatusPedidoDB:statusActualPedido,
           arrayDatos:arrayLibrosActualPedido
         })
       }
@@ -58,7 +83,7 @@ class ItemPedido extends Component{
     var self=this;
     var arrayImagenes=[];
     array.forEach(function(value,index,arr){
-    var promise=new Promise(
+    var promise2=new Promise(
       function(resolve,reject){
         refLibro = firebase.database().ref('Editorial/Libros/'+value.key);
         refLibro.on('value',snapshot=>{
@@ -67,20 +92,81 @@ class ItemPedido extends Component{
         })
       }
     )
+    promise2.then(function(){
+      self.setState({
+        arrayImagenes:arrayImagenes
+      })
+
+    })
     //  console.log(value.key);
    })
-   self.setState({
-     arrayImagenes:arrayImagenes
-   })
+
+
   }
+
 
 
 
   render(){
+
     return(
-      <h1>hola</h1>
+      <div>
+      <h3>{this.state.NombrePedidoDB}</h3>
+      <h4>"Status : "{this.state.StatusPedidoDB}</h4>
+
+
+
+      <List>
+          <Items ArrayDatosLibros={this.state.arrayDatos}
+          ImagenesPedidoDB={this.state.arrayImagenes}
+          />
+      </List>
+        </div>
     );
   }
 }
+const Items = (props) =>{
+  let arrayActivo = [];
+  let arrayActivoImage = [];
+
+    for (var i = 0; i < props.ArrayDatosLibros.length; i++) {
+
+      arrayActivo[i] = props.ArrayDatosLibros[i];
+      arrayActivoImage[i]=props.ImagenesPedidoDB[i];
+
+    }
+
+
+  return(
+    <div id='items'>
+    <div style={estilos}>
+      {arrayActivo.map((mail,i) =>
+
+        <div id='admin-list-item' style={styleItem}>
+        <div>
+        <img src={arrayActivoImage[i]} style={styleImgItem}/>
+        </div>
+        <div>
+          <ListItem
+
+            primaryText= {"Titulo : "+arrayActivo[i].libro.toString()}
+            secondaryText={
+              <p>
+                {"Cantidad : "+arrayActivo[i].cantidad }
+              </p>
+
+            }
+            secondaryTextLines={2}
+          />
+          </div>
+          <Divider inset={true}/>
+        </div>
+      )}
+      <StepperStatus/>
+      </div>
+    </div>
+  )
+}
+
 
 export default ItemPedido;
