@@ -33,9 +33,12 @@ class menuEscuela extends Component{
           <br></br>
           <FlatButton label="Historial"    primary={false} containerElement={<Link to="/escuela/tabEscuela/"/>} linkButton={true}/>
           <br></br>
-          <a onClick={() => this.handleItemClick(firebase.auth().signOut())} href="/Loginform">Logout</a>
+          <a onClick={() => this.handleItemClick(firebase.auth().signOut())} href="/">Logout</a>
         </Drawer>
+
         </AppBar>
+
+
       </div>
 
     );

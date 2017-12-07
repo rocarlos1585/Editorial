@@ -34,7 +34,7 @@ logout() {
 }
 
 login() {
-  alert(this.state.userName +" "+this.state.password);
+
   auth.signInWithEmailAndPassword(this.state.userName, this.state.password)
   .catch(function(error){
     var errorCode = error.code;

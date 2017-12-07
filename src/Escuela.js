@@ -22,6 +22,10 @@ class Escuela extends Component{
           <Route path="/escuela/pedido/:id/" component={ItemPedido}/>
         </div>
         </Switch>
+
+        <div>
+    
+        </div>
       </div>
 
     );

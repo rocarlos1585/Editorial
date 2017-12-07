@@ -155,7 +155,7 @@ handleChange=(event, index, value)=>this.setState({value});
         <RaisedButton label="Agregar" onClick={this.subirFoto}      secondary={true} /><br></br><br></br>
 
 
-        <ListaLibrosNuevos librosArray={this.state.librosArray}/>
+        
       </div>
     );
   }
