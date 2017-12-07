@@ -5,7 +5,7 @@ import AppBar from 'material-ui/AppBar'
 import {Tabs, Tab} from 'material-ui/Tabs';
 import FontIcon from 'material-ui/FontIcon';
 import AgregarLibro from "./AgregarLibro.js"
-import HistorialPedido from "./HistorialPedido";
+import HistorialPedido from "./HistorialPedido.js";
 import Actuales from './ActualesEditorial.js';
 
 class Agregartab extends Component{
