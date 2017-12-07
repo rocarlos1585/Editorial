@@ -117,8 +117,6 @@ class NuevoPedido extends Component{
                   })
 
                 })
-
-                alert(keyLibros);
                 console.log('terminado');
               }
             )

@@ -192,11 +192,11 @@ class ItemPedidoEditorial extends Component{
 
   handleNext=()=>{
     confirmAlert({
-      title: 'Confirm to submit',                        // Title dialog
-      message: 'Are you sure to do this.',               // Message dialog
-      childrenElement: () => <div>Custom UI</div>,       // Custom UI or Component
-      confirmLabel: 'Confirm',                           // Text button confirm
-      cancelLabel: 'Cancel',                             // Text button cancel
+      title: '¿Seguro que deseas actualizar el status del pedido?',                        // Title dialog
+      message: 'Una vez modificado no podras regresar.',               // Message dialog
+      childrenElement: () => <div></div>,       // Custom UI or Component
+      confirmLabel: 'Confirmar',                           // Text button confirm
+      cancelLabel: 'Cancelar',                             // Text button cancel
       onConfirm: ()=>{this.actualizarStatus()},    // Action after Confirm
       onCancel: () => alert('Action after Cancel'),      // Action after Cancel
     })
@@ -217,9 +217,8 @@ class ItemPedidoEditorial extends Component{
           />
       </List>
         <div>
-        <div style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
-          <Stepper activeStep={this.state.stepIndex}>
-
+          <div style={{width: '100%', maxWidth: 700, margin: 'auto', left:'50%'}}>
+            <Stepper activeStep={this.state.stepIndex} orientation="vertical">
             <Step>
               <StepLabel>Enviado</StepLabel>
             </Step>

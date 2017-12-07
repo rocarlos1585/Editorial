@@ -31,7 +31,7 @@ exports.sendNotification = functions.database.ref("/Editorial/Pedidos/{anio}/{me
         const tituloSnapshot = snapshot.val().nombre;
         const user=snapshot.val().userReplaced;
         let mensajePedido= 'Se acaba de agregar un nuevo pedido de :'+user;
-        envio(user.split('-').join('.'),'nuevo pedido',mensajePedido);
+        envio('einalem.vr@gmail.com','nuevo pedido',mensajePedido);
 
       });
 

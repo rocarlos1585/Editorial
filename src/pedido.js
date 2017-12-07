@@ -161,8 +161,8 @@ class ItemPedido extends Component{
           />
       </List>
         <div>
-        <div style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
-          <Stepper activeStep={this.state.stepIndex}>
+          <div style={{width: '100%', maxWidth: 700, margin: 'auto', left:'50%'}}>
+            <Stepper activeStep={this.state.stepIndex} orientation="vertical">
 
             <Step>
               <StepLabel>Enviado</StepLabel>

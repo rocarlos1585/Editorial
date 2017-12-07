@@ -9,7 +9,7 @@ function PrivateRouteEditorial ({component: Component, authed,user, ...rest}) {
   return (
     <Route
       {...rest}
-      render={(props) => authed === true &&  user === 'amfpulido@gmail.com'
+      render={(props) => authed === true &&  user === 'einalem.vr@gmail.com'
         ? <Component {...props} />
         : <Redirect to={{pathname: '/escuela' , state: {from: props.location}}} />}
     />
@@ -19,7 +19,7 @@ function PrivateRouteEscuela ({component: Component, authed,user, ...rest}) {
   return (
     <Route
       {...rest}
-      render={(props) => authed === true &&  user !== 'amfpulido@gmail.com'
+      render={(props) => authed === true &&  user !== 'einalem.vr@gmail.com'
         ? <Component {...props} />
         : <Redirect to={{pathname: '/' , state: {from: props.location}}} />}
     />
