@@ -13,6 +13,8 @@ import {
 } from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 const style ={
 
@@ -50,13 +52,21 @@ class ItemPedidoEditorial extends Component{
     var nombreActualPedido;
     var statusActualPedido;
     var arrayLibrosActualPedido= [];
+    var anioReferenciaPush;
+    var mesReferenciaPush;
+    var diaReferenciaPush;
+    var pedidoReferenciaPush;
     var promise = new Promise(
       function(resolve, reject){
         refPedidoId.on('value', snapshot=>{
           snapshot.forEach(snapChild=>{
+            anioReferenciaPush = snapChild.key;
             snapChild.forEach(snapBaby=>{
+              mesReferenciaPush = snapBaby.key;
               snapBaby.forEach(snapFeto=>{
+                diaReferenciaPush = snapFeto.key;
                 snapFeto.forEach(snapEsperma=>{
+                  pedidoReferenciaPush = snapEsperma.key;
                   if(snapEsperma.val().key == self.state.idPedido){
                     nombreActualPedido = snapEsperma.val().nombre;
                     statusActualPedido = snapEsperma.val().status;
@@ -65,9 +75,7 @@ class ItemPedidoEditorial extends Component{
                       resolve(arrayLibrosActualPedido=arrayLibrosActualPedido.concat([{cantidad: snapEsperma2.val().cantidad, key: snapEsperma2.val().key, libro: snapEsperma2.val().libro}]))
                       }
                     })
-
                   }
-
                 })
               })
             })
@@ -79,10 +87,16 @@ class ItemPedidoEditorial extends Component{
       function(){
         self.obtenerImagenes(arrayLibrosActualPedido);
         self.setState({
-          NombrePedidoDB:nombreActualPedido,
-          StatusPedidoDB:statusActualPedido,
-          arrayDatos:arrayLibrosActualPedido
+          NombrePedidoDB : nombreActualPedido,
+          StatusPedidoDB : statusActualPedido,
+          arrayDatos : arrayLibrosActualPedido,
+
+          anioRefPushState : anioReferenciaPush,
+          mesRefPushState : mesReferenciaPush,
+          diaRefPushState : diaReferenciaPush,
+          pedidoRefPushState : pedidoReferenciaPush
         })
+
         if(statusActualPedido =='enviado'){
           self.setState({
             stepIndex: 0
@@ -144,7 +158,49 @@ class ItemPedidoEditorial extends Component{
 
   }
 
+  metodoCondiciones(stepIndex){
+    switch(stepIndex){
+      case 0:
+        return 'enviado';
+      case 1:
+        return 'imprenta';
+      case 2:
+        return 'encuadernando';
+      case 3:
+          return 'embalaje';
+      case 4:
+          return 'terminado';
+      default:
+          return 'error';
+    }
 
+  }
+  actualizarStatus=()=>{
+    var nuevoStatus = this.metodoCondiciones(this.state.stepIndex+1);
+    var ref=firebase.database().ref('Editorial/Pedidos/'+this.state.anioRefPushState+'/'+this.state.mesRefPushState+'/'+this.state.diaRefPushState+'/'+this.state.pedidoRefPushState)
+    ref.update({
+      status:nuevoStatus
+    })
+
+    this.setState({
+      stepIndex:this.state.stepIndex+1
+    })
+
+
+
+  }
+
+  handleNext=()=>{
+    confirmAlert({
+      title: 'Confirm to submit',                        // Title dialog
+      message: 'Are you sure to do this.',               // Message dialog
+      childrenElement: () => <div>Custom UI</div>,       // Custom UI or Component
+      confirmLabel: 'Confirm',                           // Text button confirm
+      cancelLabel: 'Cancel',                             // Text button cancel
+      onConfirm: ()=>{this.actualizarStatus()},    // Action after Confirm
+      onCancel: () => alert('Action after Cancel'),      // Action after Cancel
+    })
+  }
 
 
   render(){
@@ -187,6 +243,13 @@ class ItemPedidoEditorial extends Component{
 
           </Stepper>
 
+        </div>
+
+        <div className="container">
+          <RaisedButton
+                label={this.state.stepIndex === 3 ? 'terminar' : 'cambiar status'}
+                primary={true}
+                onClick={this.handleNext}/>
         </div>
         </div>
         </div>
