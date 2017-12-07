@@ -13,10 +13,16 @@ import FlatButton from 'material-ui/FlatButton';
  * Linear steppers require users to complete one step in order to move on to the next.
  */
 class StepperStatus extends Component {
+  constructor(props){
+    super()
+    this.state={
+      indexDB: props.stepIndex,
 
+    }
+  }
   state = {
     finished: false,
-    stepIndex: 0,
+    stepIndex: props.stepIndex,
   };
 
 /*

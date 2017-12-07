@@ -6,7 +6,14 @@ import Subheader from 'material-ui/Subheader';
 import Avatar from 'material-ui/Avatar';
 import MenuItem from 'material-ui/MenuItem';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
-import StepperStatus from './stepperStatus.js';
+import {
+  Step,
+  Stepper,
+  StepLabel,
+} from 'material-ui/Stepper';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+
 const style ={
 
 }
@@ -32,7 +39,8 @@ class ItemPedido extends Component{
     this.state={
       idPedido: `${match.match.params.id}`,
       arrayDatos:[],
-      arrayImagenes:[]
+      arrayImagenes:[],
+      stepIndex:0,
     }
   }
 
@@ -75,8 +83,52 @@ class ItemPedido extends Component{
           StatusPedidoDB:statusActualPedido,
           arrayDatos:arrayLibrosActualPedido
         })
+        if(statusActualPedido =='enviado'){
+          self.setState({
+            stepIndex: 0
+
+          })
+        }
+        else if (statusActualPedido=='recibido') {
+          self.setState({
+            stepIndex: 1
+
+          })
+        }
+        else if (statusActualPedido=='procesando') {
+          self.setState({
+            stepIndex: 2
+
+          })
+        }
+        else if (statusActualPedido=='imprimiendo') {
+          self.setState({
+            stepIndex: 3
+
+          })
+        }
+        else if (statusActualPedido=='encuadernando') {
+          self.setState({
+            stepIndex: 4
+
+          })
+        }
+        else if (statusActualPedido=='empaquetando') {
+          self.setState({
+            stepIndex: 5
+
+          })
+        }
+        else if (statusActualPedido=='enviado al destino') {
+          self.setState({
+            stepIndex: 8
+
+          })
+        }
       }
+
     )
+
   }
   obtenerImagenes=(array)=>{
     var refLibro;
@@ -114,13 +166,48 @@ class ItemPedido extends Component{
       <h3>{this.state.NombrePedidoDB}</h3>
       <h4>"Status : "{this.state.StatusPedidoDB}</h4>
 
-
-
       <List>
           <Items ArrayDatosLibros={this.state.arrayDatos}
           ImagenesPedidoDB={this.state.arrayImagenes}
+          Status={this.state.StatusPedidoDB}
           />
       </List>
+        <div>
+        <div style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
+          <Stepper activeStep={this.state.stepIndex}>
+
+            <Step>
+              <StepLabel>Enviado</StepLabel>
+            </Step>
+
+            <Step>
+              <StepLabel>Recibido</StepLabel>
+            </Step>
+
+            <Step>
+              <StepLabel >Procesando</StepLabel>
+            </Step>
+
+            <Step>
+              <StepLabel >Imprimiendo</StepLabel>
+            </Step>
+
+            <Step>
+              <StepLabel>Encuadernando</StepLabel>
+            </Step>
+
+            <Step>
+              <StepLabel>empaquetando</StepLabel>
+            </Step>
+
+            <Step>
+              <StepLabel>Enviado</StepLabel>
+            </Step>
+
+          </Stepper>
+
+        </div>
+        </div>
         </div>
     );
   }
@@ -162,7 +249,6 @@ const Items = (props) =>{
           <Divider inset={true}/>
         </div>
       )}
-      <StepperStatus/>
       </div>
     </div>
   )
