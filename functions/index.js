@@ -10,41 +10,8 @@ const functions = require('firebase-functions');
 // The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
-/*admin.initializeApp(functions.config().firebase);
-const nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
-exports.makeUppercase = functions.database.ref('/Editorial/Libros')
-    .onWrite(event => {
-      // Grab the current value of what was written to the Realtime Database.
-      const original = event.data.val();
-      console.log('Uppercasing', event.params.pushId, original);
-      const uppercase = original.toUpperCase();
-      // You must return a Promise when performing asynchronous tasks inside a Functions such as
-      // writing to the Firebase Realtime Database.
-      // Setting an "uppercase" sibling in the Realtime Database returns a Promise.
-      return event.data.ref.parent.child('uppercase').set(uppercase);
-    });
-*//*
-exports.sendPush = functions.database.ref('/Editorial/Libros/{libroId}')
-  .onWrite(event => {
-    var eventSnapshot = event.data;
-    var datoLibro = eventSnapshot.child('TituloLibro');
-    if (datoLibro.changed()) {
-      return metodo(datoLibro.val())
-        .then(url => {
-          return eventSnapshot.ref.update({ sendPush: url });
-        });
-    }
-  });
-function metodo(data){
-  console.log(data);
-  var popup = require('popups');
-
-popup.alert({
-    content: 'Hello!'
-});
-}
-*/
 exports.sendNotification = functions.database.ref("/Editorial/Pedidos/{anio}/{mes}/{dia}/{idPedido}").onUpdate(event => {
      const snapshot = event.data;
      const tituloSnapshot = snapshot.child('status');
@@ -75,9 +42,10 @@ envio=(correo)=> {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     service:'gmail',
+    host:'smtp.gmail.com',
     auth: {
-        user: 'adan1995a@gmail.com', // generated ethereal user
-        pass: 'eydnaer1'  // generated ethereal password
+        user: 'emmanuelskapple@gmail.com', // generated ethereal user
+        pass: 'diosmeamara?'  // generated ethereal password
     },
     tls:{
       rejectUnauthorized:false
@@ -86,7 +54,7 @@ envio=(correo)=> {
 
   // setup email data with unicode symbols
   let mailOptions = {
-      from: '"EasyBook Contact" <{adan1995a@gmail.com}', // sender address
+      from: '"EasyBook Contact" <{emmanuelskapple@gmail.com}', // sender address
       to: correo, // list of receivers
       subject: 'Node Contact Request', // Subject line
       text: 'Hello world?', // plain text body
