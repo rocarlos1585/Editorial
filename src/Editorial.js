@@ -9,6 +9,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
+import * as firebase from 'firebase';
 
 
 
@@ -36,7 +37,8 @@ class Editorial extends Component{
           <br></br>
           <FlatButton label="Pedidos"    primary={false} containerElement={<Link to="/Editorial/Agregartab"/>} linkButton={true}/>
           <br></br>
-          <a>Salir</a>
+          <br></br>
+          <a onClick={() => this.handleItemClick(firebase.auth().signOut())} href="/Loginform">Logout</a>
         </Drawer>
         </AppBar>
         <div className= "routersEscuela">
