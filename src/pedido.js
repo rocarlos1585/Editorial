@@ -89,39 +89,27 @@ class ItemPedido extends Component{
 
           })
         }
-        else if (statusActualPedido=='recibido') {
+        else if (statusActualPedido=='imprenta') {
           self.setState({
             stepIndex: 1
 
           })
         }
-        else if (statusActualPedido=='procesando') {
+        else if (statusActualPedido=='encuadernando') {
           self.setState({
             stepIndex: 2
 
           })
         }
-        else if (statusActualPedido=='imprimiendo') {
+        else if (statusActualPedido=='embalaje') {
           self.setState({
             stepIndex: 3
 
           })
         }
-        else if (statusActualPedido=='encuadernando') {
+        else if (statusActualPedido=='terminado') {
           self.setState({
             stepIndex: 4
-
-          })
-        }
-        else if (statusActualPedido=='empaquetando') {
-          self.setState({
-            stepIndex: 5
-
-          })
-        }
-        else if (statusActualPedido=='enviado al destino') {
-          self.setState({
-            stepIndex: 8
 
           })
         }
@@ -181,28 +169,21 @@ class ItemPedido extends Component{
             </Step>
 
             <Step>
-              <StepLabel>Recibido</StepLabel>
+              <StepLabel>Imprenta</StepLabel>
             </Step>
 
             <Step>
-              <StepLabel >Procesando</StepLabel>
+              <StepLabel >Encuadernando</StepLabel>
             </Step>
 
             <Step>
-              <StepLabel >Imprimiendo</StepLabel>
+              <StepLabel >Emabalaje</StepLabel>
             </Step>
 
             <Step>
-              <StepLabel>Encuadernando</StepLabel>
+              <StepLabel>Terminado</StepLabel>
             </Step>
 
-            <Step>
-              <StepLabel>empaquetando</StepLabel>
-            </Step>
-
-            <Step>
-              <StepLabel>Enviado</StepLabel>
-            </Step>
 
           </Stepper>
 

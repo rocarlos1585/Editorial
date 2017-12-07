@@ -5,6 +5,7 @@ import AppBar from 'material-ui/AppBar'
 import {Tabs, Tab} from 'material-ui/Tabs';
 import FontIcon from 'material-ui/FontIcon';
 import ActualesE from './ActualesEscuela.js'
+import HistorialE from './HistorialEscuela.js'
 
 
 class Agregartab extends Component{
@@ -16,7 +17,7 @@ class Agregartab extends Component{
         <div>
         <Tabs >
           <Tab label="Pedidos activos"><ActualesE/></Tab>
-          <Tab  label="Historial de Pedidos" />
+          <Tab  label="Historial de Pedidos"><HistorialE/></Tab>
         </Tabs>
         </div>
       </div>

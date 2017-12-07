@@ -112,7 +112,9 @@ class ActualesE extends Component{
               snapshot.forEach(snapChild=>{
                 if(snapChild!=null){
                 snapChild.forEach(snapBaby=>{
-                  if(self.state.userReplaced2 == snapBaby.val().userReplaced && snapChild.val().status != "terminado" ){
+                  var usuarioBaby = snapBaby.val().userReplaced;
+                  var statusBaby = snapBaby.val().status;
+                  if(self.state.userReplaced2 == usuarioBaby && statusBaby != "terminado" ){
                     resolve(arrayDatos = arrayDatos.concat([{nombre:snapBaby.val().nombre, correo:snapBaby.val().userReplaced, estado:snapBaby.val().status, key:snapBaby.val().key}]))
                   }
                 })
@@ -181,7 +183,7 @@ class ActualesE extends Component{
          <MenuItem value={7} primaryText="Julio" />
          <MenuItem value={8} primaryText="Agosto" />
          <MenuItem value={9} primaryText="Septiembre" />
-         <MenuItem value={10} primaryText="Ocutubre" />
+         <MenuItem value={10} primaryText="Octubre" />
          <MenuItem value={11} primaryText="Noviembre" />
          <MenuItem value={12} primaryText="Diciembre" />
        </SelectField>
