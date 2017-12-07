@@ -16,6 +16,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import './App.css';
 
 
 const styleHr={
@@ -144,7 +145,7 @@ getPedido=()=>{
 
   render(){
     return(
-      <div>
+      <div className ="Todo">
         <div className="libros">
           <SelectField
             floatingLabelText="Libros"
@@ -166,7 +167,7 @@ getPedido=()=>{
           <ListaPedidoEscuela pedido={this.state.pedido}/>
         <div>
 
-        <div>
+        <div className="botones">
           <RaisedButton label="Cancelar" secondary={true}/>
           <RaisedButton label="Subir Pedido" onClick={this.sendPedido} primary={true}/>
         </div>
