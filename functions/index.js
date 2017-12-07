@@ -16,26 +16,33 @@ exports.sendNotification = functions.database.ref("/Editorial/Pedidos/{anio}/{me
      const snapshot = event.data;
      const tituloSnapshot = snapshot.child('status');
      if(tituloSnapshot.changed()){
-      // let mail=snapshot.val().userReplaced;
-       envio('adan1995a@gmail.com');
+       let mail=snapshot.val().userReplaced;
+       let nombrePedido=snapshot.val().nombre;
+       let mensajePedido= 'Tu '+nombrePedido+' ha cambiado de status';
+       envio(mail.split('-').join('.'),'se actualizó el status de tu pedido',mensajePedido);
 
      }
 
    });
 
 
+   exports.sendNotification2 = functions.database.ref("/Editorial/Pedidos/{anio}/{mes}/{dia}/{key}").onCreate(event => {
+        const snapshot = event.data;
+        const tituloSnapshot = snapshot.val().nombre;
+        const user=snapshot.val().userReplaced;
+        let mensajePedido= 'Se acaba de agregar un nuevo pedido de :'+user;
+        envio(user.split('-').join('.'),'nuevo pedido',mensajePedido);
 
-envio=(correo)=> {
+      });
+
+
+
+envio=(correo,titulo,mensaje)=> {
    const output = `
-    <p>You have a new contact request</p>
-    <h3>Contact Details</h3>
-    <ul>
-      <li>Name: nombre</li>
-      <li>Company: bebat</li>
-      <li>Email: ${correo}</li>
-      <li>Phone: 3318282443</li>
-    </ul>
-    <h3>Message</h3>
+    <p>${titulo}</p>
+    <h3>${titulo}</h3>
+    <img src='https://firebasestorage.googleapis.com/v0/b/prueba-login-edbcc.appspot.com/o/hola%2F2017-09-13-PHOTO-00003545.jpg?alt=media&token=ab833cf0-fa7d-4680-ba32-73e0a1d71513'/>
+    <h3>${mensaje}</h3>
     <p>mensaje</p>
   `;
 
@@ -44,8 +51,8 @@ envio=(correo)=> {
     service:'gmail',
     host:'smtp.gmail.com',
     auth: {
-        user: 'emmanuelskapple@gmail.com', // generated ethereal user
-        pass: 'diosmeamara?'  // generated ethereal password
+        user: 'roberto.karlos.lopez@gmail.com', // generated ethereal user
+        pass: 'gekox1585'  // generated ethereal password
     },
     tls:{
       rejectUnauthorized:false
@@ -54,7 +61,7 @@ envio=(correo)=> {
 
   // setup email data with unicode symbols
   let mailOptions = {
-      from: '"EasyBook Contact" <{emmanuelskapple@gmail.com}', // sender address
+      from: '"EasyBook Contact" <roberto.karlos.lopez@gmail.com', // sender address
       to: correo, // list of receivers
       subject: 'Node Contact Request', // Subject line
       text: 'Hello world?', // plain text body
