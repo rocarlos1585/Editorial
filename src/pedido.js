@@ -13,6 +13,7 @@ import {
 } from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import './App.css';
 
 const style ={
 
@@ -150,7 +151,7 @@ class ItemPedido extends Component{
   render(){
 
     return(
-      <div>
+      <div className="pedido">
       <h3>{this.state.NombrePedidoDB}</h3>
       <h4>"Status : "{this.state.StatusPedidoDB}</h4>
 
@@ -160,7 +161,7 @@ class ItemPedido extends Component{
           Status={this.state.StatusPedidoDB}
           />
       </List>
-        <div>
+        <div className="pasos">
         <div style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
           <Stepper activeStep={this.state.stepIndex}>
 

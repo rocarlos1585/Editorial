@@ -25,7 +25,7 @@ class menuEscuela extends Component{
       <AppBar title="Escuela"onClick={this.handleToggle}>
       <Drawer  className="opciones"
         docket={false}
-        width={250}
+        width={200}
         open={this.state.open}
         onRequestChange={(open) => this.setState({open})}>
         <AppBar title="Menu"></AppBar>

@@ -142,7 +142,9 @@ handleChange=(event, index, value)=>this.setState({value});
 
       <div className="libro">
         <LinearProgress mode="determinate" value={this.state.statusSubida} />
+        <br></br>
         <img className="ava" src={this.state.imagen}size={70} style={style}/>
+        <br></br>
         <br></br>
         <input type='file' onChange={this.seleccionarFoto.bind(this)}/>
         <br></br>
@@ -155,7 +157,7 @@ handleChange=(event, index, value)=>this.setState({value});
         <RaisedButton label="Agregar" onClick={this.subirFoto}      secondary={true} /><br></br><br></br>
 
 
-        
+
       </div>
     );
   }

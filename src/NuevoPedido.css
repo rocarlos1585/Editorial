@@ -1,15 +1,15 @@
-.espacio{
-  align-items: right;
+.Todo{
+  margin-top: 17px;
+  margin-left: 17px;
+  margin-right: 17px;
+  margin-bottom: 17px;
 }
-
-.cantidad{
-  text-align: left;
-  padding-left: 80px;
-  padding-top: 20px;
-  width: 100px;
-}
-
 .libros{
-  text-align: left;
-  padding-left: 300px;
+
+}
+.boton{
+  margin-left: 54px;
+}
+.botones{
+
 }

@@ -16,12 +16,12 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import './App.css';
+import './NuevoPedido.css';
 
 
 const styleHr={
   size:"5",
-  width:"7%",
+  width:"5%",
   /*align:left*/
 };
 
@@ -160,8 +160,8 @@ getPedido=()=>{
 
         <div>
           <TextField style={styleHr} floatingLabelText="cantidad" onChange={this.getCantidad} fullWidth={false}/>
-          <br></br>
-          <RaisedButton label="Agregar" onClick={this.getPedido} primary={true}/>
+
+          <RaisedButton className="boton" label="Agregar" onClick={this.getPedido} primary={true}/>
 
         </div>
           <ListaPedidoEscuela pedido={this.state.pedido}/>

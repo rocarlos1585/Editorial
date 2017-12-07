@@ -4,6 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import firebase, {auth, provider} from './firebase.js'
+import './App.css';
 
 
 class Login extends Component {
@@ -66,14 +67,16 @@ render() {
 
 
         <MuiThemeProvider>
-          <div>
+          <div >
           <AppBar title="Login"/>
+          <div className="login">
            <TextField
              hintText="Ingresa tu Correo"
              floatingLabelText="Correo"
              onChange = {(event,correo) => this.setState({userName:correo})}
              />
            <br/>
+
              <TextField
                type="password"
                hintText="Ingresa tu Constraseña"
@@ -82,6 +85,7 @@ render() {
                />
              <br/>
              <RaisedButton label="Submit" primary={true} style={style} onClick={this.login}/>
+             </div>
          </div>
          </MuiThemeProvider>
 

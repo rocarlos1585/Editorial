@@ -168,7 +168,7 @@ class ActualesE extends Component{
   render(){
 
     return(
-      <div>
+      <div className="todoA">
       <SelectField className="seleccion"
          floatingLabelText="Frequency"
          value={this.state.value}
