@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {ref,auth} from './firebase.js';
+import {ref,auth} from '../firebase.js';
 import * as firebase from 'firebase'
 
 import {Route,withRouter, BrowserRouter, Link, Redirect, Switch,Router,History} from 'react-router-dom'
@@ -44,7 +44,7 @@ class Item extends Component{
   }
 }
 
-class ActualesE extends Component{
+class HistorialE extends Component{
 
   constructor(){
     super()
@@ -114,7 +114,7 @@ class ActualesE extends Component{
                 snapChild.forEach(snapBaby=>{
                   var usuarioBaby = snapBaby.val().userReplaced;
                   var statusBaby = snapBaby.val().status;
-                  if(self.state.userReplaced2 == usuarioBaby && statusBaby != "terminado" ){
+                  if(self.state.userReplaced2 == usuarioBaby && statusBaby == "terminado" ){
                     resolve(arrayDatos = arrayDatos.concat([{nombre:snapBaby.val().nombre, correo:snapBaby.val().userReplaced, estado:snapBaby.val().status, key:snapBaby.val().key}]))
                   }
                 })
@@ -207,4 +207,4 @@ class ActualesE extends Component{
 
 }
 
-export default ActualesE;
+export default HistorialE;

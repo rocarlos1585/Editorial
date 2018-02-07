@@ -25,6 +25,19 @@ exports.sendNotification = functions.database.ref("/Editorial/Pedidos/{anio}/{me
 
    });
 
+   exports.sendNotification = functions.database.ref("/Editorial/Devoluciones/{anio}/{mes}/{dia}").onCreate(event => {
+        const snapshot = event.data;
+        const tituloSnapshot = snapshot.child('status');
+        if(tituloSnapshot.changed()){
+          let mail=snapshot.val().userReplaced;
+          let nombrePedido=snapshot.val().nombre;
+          let mensajePedido= 'nueva devolucion de : '+mail;
+          envio('einalem.vr@gmail.com','nueva devolucion',mensajePedido);
+
+        }
+
+      });
+
 
    exports.sendNotification2 = functions.database.ref("/Editorial/Pedidos/{anio}/{mes}/{dia}/{key}").onCreate(event => {
         const snapshot = event.data;
@@ -43,7 +56,7 @@ envio=(correo,titulo,mensaje)=> {
     <h3>${titulo}</h3>
     <img src='https://firebasestorage.googleapis.com/v0/b/prueba-login-edbcc.appspot.com/o/hola%2F2017-09-13-PHOTO-00003545.jpg?alt=media&token=ab833cf0-fa7d-4680-ba32-73e0a1d71513'/>
     <h3>${mensaje}</h3>
-    <p>mensaje</p>
+    <p>https://prueba-login-edbcc.firebaseapp.com/</p>
   `;
 
   // create reusable transporter object using the default SMTP transport
@@ -62,7 +75,7 @@ envio=(correo,titulo,mensaje)=> {
   // setup email data with unicode symbols
   let mailOptions = {
       from: '"EasyBook Contact" <roberto.karlos.lopez@gmail.com', // sender address
-      to: correo, // list of receivers
+      to: 'adan1995a@gmail.com', // list of receivers   poner correo
       subject: 'Node Contact Request', // Subject line
       text: 'Hello world?', // plain text body
       html: output // html body

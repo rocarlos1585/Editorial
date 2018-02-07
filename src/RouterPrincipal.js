@@ -2,8 +2,8 @@ import React,{Component} from 'react'
 import {Route, BrowserRouter, Link, Redirect, Switch,Router} from 'react-router-dom'
 import * as firebase from 'firebase'
 import Login from './Loginform.js'
-import Escuela from './Escuela.js'
-import Editorial from './Editorial.js'
+import Escuela from './Escuela/Escuela.js'
+import Editorial from './Editorial/Editorial.js'
 
 function PrivateRouteEditorial ({component: Component, authed,user, ...rest}) {
   return (

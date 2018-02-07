@@ -4,13 +4,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import NuevoPedido from "./NuevoPedido.js"
 import HistorialEscuela from "./HistorialEscuela.js";
 import tabEscuela from "./tabEscuela";
-import Agregartab from './pedido.js';
+import Agregartab from '../Editorial/pedido.js';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import * as firebase from 'firebase';
 
-class menuEditorial extends Component{
+class menuEscuela extends Component{
   constructor(props) {
        super(props);
        this.state = {open: false};
@@ -29,11 +29,13 @@ class menuEditorial extends Component{
         open={this.state.open}
         onRequestChange={(open) => this.setState({open})}>
         <AppBar title="Menu"></AppBar>
-          <FlatButton label="Nuevo libro" primary={false} containerElement={<Link to="/editorial/AgregarLibro/"/>} linkButton={true}/>
+          <FlatButton label="Nuevo Pedido" primary={false} containerElement={<Link to="/escuela/NuevoPedido/"/>} linkButton={true}/>
           <br></br>
-          <FlatButton label="Historial"    primary={false} containerElement={<Link to="/editorial/tabEditorial/"/>} linkButton={true}/>
+          <FlatButton label="Historial"    primary={false} containerElement={<Link to="/escuela/tabEscuela/"/>} linkButton={true}/>
           <br></br>
-          <a onClick={() => this.handleItemClick(firebase.auth().signOut())} href="/">Logout</a>
+          <FlatButton label="Devoluciones"    primary={false} containerElement={<Link to="/escuela/devolucion/"/>} linkButton={true}/>
+          <br></br><br/>
+          <a onClick={() => this.handleItemClick(firebase.auth().signOut())} href="/">Salir</a>
         </Drawer>
 
         </AppBar>
@@ -45,4 +47,4 @@ class menuEditorial extends Component{
   }
 }
 
-export default menuEditorial;
+export default menuEscuela;

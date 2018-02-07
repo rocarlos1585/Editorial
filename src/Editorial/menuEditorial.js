@@ -1,16 +1,12 @@
 import React, {Component} from "react";
 import {Route, BrowserRouter, Link, Redirect, Switch,Router} from 'react-router-dom'
 import RaisedButton from 'material-ui/RaisedButton';
-import NuevoPedido from "./NuevoPedido.js"
-import HistorialEscuela from "./HistorialEscuela.js";
-import tabEscuela from "./tabEscuela";
-import Agregartab from './pedido.js';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import * as firebase from 'firebase';
 
-class menuEscuela extends Component{
+class menuEditorial extends Component{
   constructor(props) {
        super(props);
        this.state = {open: false};
@@ -29,9 +25,11 @@ class menuEscuela extends Component{
         open={this.state.open}
         onRequestChange={(open) => this.setState({open})}>
         <AppBar title="Menu"></AppBar>
-          <FlatButton label="Nuevo Pedido" primary={false} containerElement={<Link to="/escuela/NuevoPedido/"/>} linkButton={true}/>
+          <FlatButton label="Nuevo libro" primary={false} containerElement={<Link to="/editorial/AgregarLibro/"/>} linkButton={true}/>
           <br></br>
-          <FlatButton label="Historial"    primary={false} containerElement={<Link to="/escuela/tabEscuela/"/>} linkButton={true}/>
+          <FlatButton label="Historial"    primary={false} containerElement={<Link to="/editorial/tabEditorial/"/>} linkButton={true}/>
+          <br></br>
+          <FlatButton label="Devoluciones"    primary={false} containerElement={<Link to="/editorial/devoluciones/"/>} linkButton={true}/>
           <br></br>
           <a onClick={() => this.handleItemClick(firebase.auth().signOut())} href="/">Logout</a>
         </Drawer>
@@ -45,4 +43,4 @@ class menuEscuela extends Component{
   }
 }
 
-export default menuEscuela;
+export default menuEditorial;

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import * as firebase from 'firebase';
-import {ref} from './firebase.js'
+import {ref} from '../firebase.js'
 import AppBar from 'material-ui/AppBar'
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
@@ -8,8 +8,8 @@ import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import Avatar from 'material-ui/Avatar';
-import TableExampleSimple from './tableLibros.js'
-import ListaLibrosNuevos from './ListaLibrosNuevos.js'
+import TableExampleSimple from '../tableLibros.js'
+import ListaLibrosNuevos from '../ListaLibrosNuevos.js'
 import LinearProgress from 'material-ui/LinearProgress';
 import './AgregarLibro.css';
 const style = {margin: 5};
@@ -77,7 +77,7 @@ handleChange=(event, index, value)=>this.setState({value});
             reader.onload = (e) => {
 
                 this.setState({
-
+                  imagenPreview:reader.result,
                   imagen:file,
 
                 });
@@ -142,7 +142,7 @@ handleChange=(event, index, value)=>this.setState({value});
 
       <div className="libro">
         <LinearProgress mode="determinate" value={this.state.statusSubida} />
-        <img className="ava" src={this.state.imagen}size={70} style={style}/>
+        <img className="ava" src={this.state.imagenPreview}size={70} style={style}/>
         <br></br>
         <input type='file' onChange={this.seleccionarFoto.bind(this)}/>
         <br></br>
@@ -155,7 +155,7 @@ handleChange=(event, index, value)=>this.setState({value});
         <RaisedButton label="Agregar" onClick={this.subirFoto}      secondary={true} /><br></br><br></br>
 
 
-        
+
       </div>
     );
   }

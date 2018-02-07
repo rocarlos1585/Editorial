@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ListaPedidoEscuela from './listaPedidoEscuela.js'
-import {ref} from './firebase.js'
+import {ref} from '../firebase.js'
 import * as firebase from 'firebase'
 import {
   Table,
