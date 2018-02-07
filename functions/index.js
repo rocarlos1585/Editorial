@@ -25,7 +25,7 @@ exports.sendNotification = functions.database.ref("/Editorial/Pedidos/{anio}/{me
 
    });
 
-   exports.sendNotification = functions.database.ref("/Editorial/Devoluciones/{anio}/{mes}/{dia}").onCreate(event => {
+   exports.sendNotification3 = functions.database.ref("/Editorial/Devoluciones/{anio}/{mes}/{dia}").onCreate(event => {
         const snapshot = event.data;
         const tituloSnapshot = snapshot.child('status');
         if(tituloSnapshot.changed()){
@@ -75,7 +75,7 @@ envio=(correo,titulo,mensaje)=> {
   // setup email data with unicode symbols
   let mailOptions = {
       from: '"EasyBook Contact" <roberto.karlos.lopez@gmail.com', // sender address
-      to: 'adan1995a@gmail.com', // list of receivers   poner correo
+      to: correo, // list of receivers   poner correo
       subject: 'Node Contact Request', // Subject line
       text: 'Hello world?', // plain text body
       html: output // html body

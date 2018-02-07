@@ -108,10 +108,9 @@ class HistorialDevoluciones extends Component{
                 if(snapChild!=null){
                 snapChild.forEach(snapBaby=>{
                   var usuarioBaby = snapBaby.val().userReplaced;
-                  var statusBaby = snapBaby.val().status;
-                  if( statusBaby == "terminado" ){
+                  
                     resolve(arrayDatos = arrayDatos.concat([{nombre:snapBaby.val().nombre, correo:snapBaby.val().userReplaced, estado:snapBaby.val().status, key:snapBaby.val().key}]))
-                  }
+
                 })
               }
               else{
