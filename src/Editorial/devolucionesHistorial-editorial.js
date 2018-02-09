@@ -21,13 +21,21 @@ class Item extends Component{
     super(props)
 
   }
+  callBackIndex=()=>{
+  var self=this;
+  var index=this.props.keys;
+  var clave=this.props.arreglo[index].key;
+
+  window.location.href = "/editorial/Devoluciones/"+clave;
+
+  }
 
 
   render(){
     return(
       <div>
 
-      <TableRow  >
+      <TableRow onClick={this.callBackIndex} >
         <TableRowColumn>{this.props.nombre}</TableRowColumn>
         <TableRowColumn>{this.props.status}</TableRowColumn>
       </TableRow>
@@ -108,7 +116,7 @@ class HistorialDevoluciones extends Component{
                 if(snapChild!=null){
                 snapChild.forEach(snapBaby=>{
                   var usuarioBaby = snapBaby.val().userReplaced;
-                  
+
                     resolve(arrayDatos = arrayDatos.concat([{nombre:snapBaby.val().nombre, correo:snapBaby.val().userReplaced, estado:snapBaby.val().status, key:snapBaby.val().key}]))
 
                 })
