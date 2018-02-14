@@ -17,10 +17,10 @@ class Editorial extends Component{
       <div>
         <Switch >
         <div className= "routersEscuela">
-          <Route path="/editorial" component={menuEditorial}/>
+          <Route path="/" component={menuEditorial}/>
           <Route path="/editorial/AgregarLibro/" component={AgregarLibro}/>
           <Route path="/editorial/tabEditorial/"   component={Agregartab}/>
-          <Route path="/editorial/devoluciones" component={HistorialDevoluciones}/>
+          <Route path="/editorial/devoluciones/" component={HistorialDevoluciones}/>
           <Route path="/editorial/devolucion-item/:id" component ={ItemDevolucion}/>
           <Route path="/editorial/pedido/:id/" component={ItemPedidoEditorial}/>
           <Route path="/editorial/pedidoHistorial/:id" component={ItemPedido}/>
