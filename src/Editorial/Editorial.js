@@ -7,8 +7,8 @@ import Agregartab from "./tab.js";
 import ItemPedidoEditorial from './pedidoEditorial.js';
 import ItemPedido from './pedido.js';
 import menuEditorial from './menuEditorial.js';
-import HistorialDevoluciones from './devolucionesHistorial-editorial.js'
-
+import HistorialDevoluciones from './devolucionesHistorial-editorial.js';
+import ItemDevolucion from './itemDevolucion.js';
 
 class Editorial extends Component{
 
@@ -21,6 +21,7 @@ class Editorial extends Component{
           <Route path="/editorial/AgregarLibro/" component={AgregarLibro}/>
           <Route path="/editorial/tabEditorial/"   component={Agregartab}/>
           <Route path="/editorial/devoluciones" component={HistorialDevoluciones}/>
+          <Route path="/editorial/devolucion-item/:id" component ={ItemDevolucion}/>
           <Route path="/editorial/pedido/:id/" component={ItemPedidoEditorial}/>
           <Route path="/editorial/pedidoHistorial/:id" component={ItemPedido}/>
         </div>

@@ -4,6 +4,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
+import FaBook from 'react-icons/lib/fa/book';
+import MdCollectionsBookmark from 'react-icons/lib/md/collections-bookmark';
+import FaRetweet from 'react-icons/lib/fa/retweet'
 import * as firebase from 'firebase';
 
 class menuEditorial extends Component{
@@ -18,7 +21,8 @@ class menuEditorial extends Component{
   render(){
     return(
       <div>
-      <AppBar title="Escuela"onClick={this.handleToggle}>
+      <AppBar title="Editorial"onClick={this.handleToggle}>
+
       <Drawer  className="opciones"
         docket={false}
         width={250}
@@ -35,6 +39,9 @@ class menuEditorial extends Component{
         </Drawer>
 
         </AppBar>
+        <Link to={`/editorial/AgregarLibro/`}><FaBook size={55} />Nuevo libro</Link>
+        <Link to={`/editorial/tabEditorial/`}><MdCollectionsBookmark size={55}/>Historial Pedidos</Link>
+        <Link to={`/editorial/devoluciones/`}><FaRetweet size={55}/>Devoluciones</Link>
 
 
       </div>

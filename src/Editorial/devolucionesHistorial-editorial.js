@@ -26,7 +26,7 @@ class Item extends Component{
   var index=this.props.keys;
   var clave=this.props.arreglo[index].key;
 
-  window.location.href = "/editorial/Devoluciones/"+clave;
+  window.location.href = "/editorial/devolucion-item/"+clave;
 
   }
 
