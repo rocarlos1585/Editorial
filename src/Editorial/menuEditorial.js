@@ -66,7 +66,7 @@ class menuEditorial extends Component{
           <a onClick={() => this.handleItemClick(firebase.auth().signOut())} href="/">Logout</a>
         </Drawer>
         </AppBar>
-      
+        
 
 
       </div>
