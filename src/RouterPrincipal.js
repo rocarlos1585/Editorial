@@ -32,7 +32,7 @@ function PublicRouteLogin ({component: Component, authed, ...rest}) {
       {...rest}
       render={(props) => authed === false
         ? <Component {...props} />
-        : <Redirect to='/editorial' />}
+        : <Redirect to='/editorial/menu' />}
     />
   )
 }

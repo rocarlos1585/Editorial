@@ -134,6 +134,8 @@ handleChange=(event, index, value)=>this.setState({value});
         foto:`${this.state.imagenurl}`,
         key:refDa2.key
       });
+      window.location.reload();
+
     }
 
   render(){
@@ -148,10 +150,10 @@ handleChange=(event, index, value)=>this.setState({value});
         <br></br>
         <TextField hintText="ID" onChange={this.getIdLibro} floatingLabelText="ID"/>
         <br></br>
-        <TextField hintText="Titulo" onChange={this.getTituloLibro} floatingLabelText="Titulo"/>
+        <TextField hintText="Titulo" onChange={this.getTituloLibro} type="text" floatingLabelText="Titulo"/>
         <br></br>
         <TextField hintText="Modulo" onChange={this.getModulo}      floatingLabelText="Modulo" /><pre></pre>
-        <TextField hintText="#"      onChange={this.getPaginas}     floatingLabelText="Numero de Paginas" /><br></br>
+        <TextField hintText="#"      onChange={this.getPaginas}  type="number"   floatingLabelText="Numero de Paginas" /><br></br>
         <RaisedButton label="Agregar" onClick={this.subirFoto}      secondary={true} /><br></br><br></br>
 
 

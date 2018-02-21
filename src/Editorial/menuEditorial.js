@@ -25,55 +25,8 @@ class Botones extends Component{
     );
   }
 }
-const Vacio=()=>{
-  <div></div>
-}
-class menuEditorial extends Component{
-  constructor(match) {
-       super();
-       this.state = {
-        open: false,
-        principal:`${match.location.pathname}`,
-     };
-     }
-
-     handleToggle = () => this.setState({open: !this.state.open});
-     handleClose = () => this.setState({open: false});
-
-  render(){
-    var bandera;
-    if(this.state.principal=='/editorial'){
-      bandera=true;
-    }
-    else{bandera=false;}
-
-    return(
-      <div>
-      <AppBar title="Editorial"onClick={this.handleToggle}>
-
-      <Drawer  className="opciones"
-        docket={false}
-        width={250}
-        open={this.state.open}
-        onRequestChange={(open) => this.setState({open})}>
-        <AppBar title="Menu"></AppBar>
-          <FlatButton label="Nuevo libro" primary={false} containerElement={<Link to="/editorial/AgregarLibro/"/>} linkButton={true}/>
-          <br></br>
-          <FlatButton label="Historial"    primary={false} containerElement={<Link to="/editorial/tabEditorial/"/>} linkButton={true}/>
-          <br></br>
-          <FlatButton label="Devoluciones"    primary={false} containerElement={<Link to="/editorial/devoluciones/"/>} linkButton={true}/>
-          <br></br>
-          <a onClick={() => this.handleItemClick(firebase.auth().signOut())} href="/">Logout</a>
-        </Drawer>
-        </AppBar>
-        
 
 
-      </div>
-
-    );
-  }
-}
 
 
-export default menuEditorial;
+export default Botones;

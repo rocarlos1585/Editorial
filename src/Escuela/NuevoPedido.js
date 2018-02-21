@@ -118,6 +118,7 @@ class NuevoPedido extends Component{
 
                 })
                 console.log('terminado');
+                window.location.reload();
               }
             )
   }
@@ -157,7 +158,7 @@ getPedido=()=>{
         </div>
 
         <div>
-          <TextField style={styleHr} floatingLabelText="cantidad" onChange={this.getCantidad} fullWidth={false}/>
+          <TextField style={styleHr} floatingLabelText="cantidad" type="number" nChange={this.getCantidad} fullWidth={false}/>
           <br></br>
           <RaisedButton label="Agregar" onClick={this.getPedido} primary={true}/>
 
