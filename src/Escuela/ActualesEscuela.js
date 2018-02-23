@@ -50,11 +50,12 @@ class ActualesE extends Component{
     super()
     var date = new Date();
     var mesActual = date.getMonth()+1;
+    var anioActual=date.getFullYear();
     this.state={
       arra:[],
       seleccionado:mesActual,
-      value:mesActual
-
+      value:mesActual,
+      anio:anioActual
 
     }
   }
@@ -158,6 +159,41 @@ class ActualesE extends Component{
    )
 
  }
+ handleChangeDos=(event,index,value)=>{
+   let self=this;
+   var year=this.state.anio;
+   switch(value){
+    case 1:
+      year='2017';
+      break;
+    case 2:
+      year="2018";
+      break;
+    case 3:
+      year="2019";
+      break;
+    case 4:
+      year="2020";
+      break;
+    case 5:
+      year="2021";
+      break;
+
+   }
+   console.log(year);
+   var promise = new Promise(
+     function(resolve,reject){
+       resolve(self.setState({
+         anio:year
+       }))
+     }
+   )
+   promise.then(
+     function(){
+       self.PedidosActuales();
+     }
+   )
+ }
 
 
   callBackIndex=(dato)=>{
@@ -187,6 +223,18 @@ class ActualesE extends Component{
          <MenuItem value={11} primaryText="Noviembre" />
          <MenuItem value={12} primaryText="Diciembre" />
        </SelectField>
+       <SelectField className="seleccion"
+          floatingLabelText="Año"
+          value={this.state.anio}
+          onChange={this.handleChangeDos}
+        >
+          <MenuItem value={1} primaryText="2017" />
+          <MenuItem value={2} primaryText="2018" />
+          <MenuItem value={3} primaryText="2019" />
+          <MenuItem value={4} primaryText="2020" />
+          <MenuItem value={5} primaryText="2021" />
+
+        </SelectField>
        <br />
       <Table className="tablaD">
         <TableHeader>

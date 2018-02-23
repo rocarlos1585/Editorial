@@ -11,7 +11,7 @@ function PrivateRouteEditorial ({component: Component, authed,user, ...rest}) {
       {...rest}
       render={(props) => authed === true &&  user === 'einalem.vr@gmail.com'
         ? <Component {...props} />
-        : <Redirect to={{pathname: '/escuela' , state: {from: props.location}}} />}
+        : <Redirect to={{pathname: '/escuela/menu' , state: {from: props.location}}} />}
     />
   )
 }

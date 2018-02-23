@@ -5,40 +5,22 @@ import NuevoPedido from "./NuevoPedido.js"
 import HistorialEscuela from "./HistorialEscuela.js";
 import tabEscuela from "./tabEscuela";
 import Agregartab from '../Editorial/pedido.js';
-import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
-import * as firebase from 'firebase';
+import FaBook from 'react-icons/lib/fa/book';
+import MdCollectionsBookmark from 'react-icons/lib/md/collections-bookmark';
+import FaRetweet from 'react-icons/lib/fa/retweet'
 
 class menuEscuela extends Component{
-  constructor(props) {
-       super(props);
-       this.state = {open: false};
-     }
 
-     handleToggle = () => this.setState({open: !this.state.open});
-     handleClose = () => this.setState({open: false});
 
   render(){
     return(
       <div>
-      <AppBar title="Escuela"onClick={this.handleToggle}>
-      <Drawer  className="opciones"
-        docket={false}
-        width={250}
-        open={this.state.open}
-        onRequestChange={(open) => this.setState({open})}>
-        <AppBar title="Menu"></AppBar>
-          <FlatButton label="Nuevo Pedido" primary={false} containerElement={<Link to="/escuela/NuevoPedido/"/>} linkButton={true}/>
-          <br></br>
-          <FlatButton label="Historial"    primary={false} containerElement={<Link to="/escuela/tabEscuela/"/>} linkButton={true}/>
-          <br></br>
-          <FlatButton label="Devoluciones"    primary={false} containerElement={<Link to="/escuela/devolucion/"/>} linkButton={true}/>
-          <br></br><br/>
-          <a onClick={() => this.handleItemClick(firebase.auth().signOut())} href="/">Salir</a>
-        </Drawer>
-
-        </AppBar>
+      <div className='botones'>
+        <Link id='agregarLibro' to={`/escuela/NuevoPedido/`}><FaBook id="icono"size={55} />Nuevo libro</Link>
+        <Link id='historial' to={`/escuela/tabEscuela/`}><MdCollectionsBookmark id="icono" size={55}/>Historial Pedidos</Link>
+        <Link id='devoluciones' to={`/escuela/devolucion/`}><FaRetweet id="icono" size={55}/>Devoluciones</Link>
+        </div>
 
 
       </div>
